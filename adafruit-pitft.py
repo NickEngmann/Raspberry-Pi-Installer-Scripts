@@ -550,13 +550,7 @@ def success():
     print("""
 Settings take effect on next boot.
 """)
-    if auto_reboot is None:
-        auto_reboot = shell.prompt("REBOOT NOW?", default="y")
-    if not auto_reboot:
-        print("Exiting without reboot.")
-        shell.exit()
-    print("Reboot started...")
-    shell.reboot()
+    print("Exiting without reboot.")
     shell.exit()
 
 ####################################################### MAIN
