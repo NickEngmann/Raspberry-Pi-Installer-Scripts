@@ -470,7 +470,7 @@ def install_fbcp_unit():
     shell.write_text_file("/etc/systemd/system/fbcp.service",
     """[Unit]
 Description=Framebuffer copy utility for PiTFT
-After=network.target
+After=sysinit.target
 
 [Service]
 Type=simple
