@@ -106,9 +106,6 @@ Raspberry Pi and installs Blinka
             shell.exit()
     elif default_python_version() < 3:
         shell.warn("WARNING Default System python version is {}. It will be updated to Version 3.".format(default_python_version(False)))
-        default_python = 2
-        if not shell.prompt("Continue?"):
-            shell.exit()
     sys_update()
     check_blinka_python_version()
     set_raspiconfig()
@@ -121,7 +118,6 @@ Raspberry Pi and installs Blinka
 
 Settings take effect on next boot.
 """)
-    shell.prompt_reboot()
 
 # Main function
 if __name__ == "__main__":
