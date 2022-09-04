@@ -23,8 +23,6 @@ I2S microphone support.
     else:
         shell.bail("Unsupported Pi board detected.")
 
-    auto_load = shell.prompt("Auto load module at boot?")
-
     print("""
 Installing...""")
 
@@ -34,16 +32,14 @@ Installing...""")
     shell.run_command("make")
     shell.run_command("make install")
 
-    # Setup auto load at boot if selected
-    if auto_load:
-        shell.write_text_file(
-            "/etc/modules-load.d/snd-i2smic-rpi.conf",
-            "snd-i2smic-rpi"
-        )
-        shell.write_text_file(
-            "/etc/modprobe.d/snd-i2smic-rpi.conf",
-            "options snd-i2smic-rpi rpi_platform_generation={}".format(pimodel_select)
-        )
+    shell.write_text_file(
+        "/etc/modules-load.d/snd-i2smic-rpi.conf",
+        "snd-i2smic-rpi"
+    )
+    shell.write_text_file(
+        "/etc/modprobe.d/snd-i2smic-rpi.conf",
+        "options snd-i2smic-rpi rpi_platform_generation={}".format(pimodel_select)
+    )
 
     # Enable I2S overlay
     shell.run_command("sed -i -e 's/#dtparam=i2s/dtparam=i2s/g' /boot/config.txt")
